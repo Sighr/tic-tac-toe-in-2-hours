@@ -1,4 +1,8 @@
 
+const players = [1, 2];
+const max_players = players.length;
+let current_player = 0;
+
 class Game {
 	constructor(num, cell_size) {
 		this.num = num;
@@ -6,7 +10,7 @@ class Game {
 		for(let i = 0; i < num; ++i) {
 			this.cells.push([]);
 			for(let j = 0; j < num; ++j) {
-				this.cells[i].push(new Cell(i*cell_size, j*cell_size), ' ');
+				this.cells[i].push(new Cell(i*cell_size, j*cell_size, ' '));
 			}
 		}
 	}
@@ -33,6 +37,15 @@ class Cell {
 		this.x = x;
 		this.y = y;
 		this.el = document.createElement('div');
+		const listener = (event) => {
+			this.symbol = current_player === 1 ? 'X' : 'O';
+			// draw some shit based on this.symbol
+			this.el.removeEventListener('click', listener);
+			this.el.innerText = this.symbol; // REWRITE THIS
+			current_player = current_player + 1;
+			current_player = current_player % max_players;
+		};
+		this.el.addEventListener('click', listener);
 	}
 
 	render(parent) {
