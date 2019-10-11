@@ -24,10 +24,10 @@ class Game {
 		}
 		console.log(this.cells);
 		const parent = document.getElementById(id);
-		parent.style = `width:${this.num*(this.cell_size+5)}; height:${this.num*(this.cell_size+5)};`;
+		parent.style = `width:${this.num*(this.cell_size+5)}px; height:${this.num*(this.cell_size+5)}px;`;
 		for(let i = 0; i < this.num; ++i) {
 			for(let j = 0; j < this.num; ++j) {
-				this.cells[i][j].render(parent);
+				this.cells[i][j].render(parent, this.cell_size);
 			}
 		}
 		//
@@ -51,8 +51,9 @@ class Cell {
 		this.el.addEventListener('click', listener);
 	}
 
-	render(parent) {
+	render(parent, cell_size) {
 		parent.appendChild(this.el);
-
+		this.el.classList.add("cell");
+		this.el.style = `width:${cell_size}px; height:${cell_size}px;`;
 	}
 }
