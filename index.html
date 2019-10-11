@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Tic Tac Toe</title>
+	<title>Tic-tac-toe</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <script></script>
+	<audio src="music.mp3" autoplay="autoplay" id="audio_player">
+	</audio> 
+	<div class="hideable">
+		<div class="header-block"><h1 class="grad1">Эй, ты!</h1></div>
+		<div class="text-block"><p class="grad1 p">Хочешь немного кастомизируемых крестиков-ноликов? Введи размерность поля в поле ввода ниже и нажми на Федорука.</p></div>
+		<div class="form">
+			<input type="number" id="size" value="3">
+			<br>
+			<button class="start-game" onclick="new Game(document.getElementById('size').value, 100).render('field'); document.getElementById('audio_player').play();"><img src="fedoruk.PNG"></button>
+		</div>
+		
+	</div>
+	<div id="field"></div>
+	<script type="text/javascript" src="index.js"></script>
+
 </body>
 </html>
